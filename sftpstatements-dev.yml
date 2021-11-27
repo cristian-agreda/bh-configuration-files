@@ -15,12 +15,12 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
       properties:
-        schema.registry.url: http://schema-registry:8081
+        schema.registry.url: http://kafka-schema-registry:8081
 
 s3:
   config:
-    url: http://localstack:4566
-    region: south-east-1
+    url: http://aws-localstack:4566
+    region: eu-west-1
     access-key-id: test
     secret-key-id: test
 
