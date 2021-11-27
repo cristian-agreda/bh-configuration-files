@@ -30,4 +30,4 @@ application:
       integration-code: ecs-bank
       process: STATEMENTS
       validation-required: true
-      topic: Transformation1
+      topic: statement.fct.files.0
