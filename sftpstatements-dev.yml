@@ -11,7 +11,7 @@ spring:
   kafka:
     producer:
       client-id: ecs-bank-statement-producer
-      bootstrap-servers: kafka1:9092
+      bootstrap-servers: kafka1:19092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
       properties:
