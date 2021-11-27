@@ -2,7 +2,7 @@ sftp:
   config:
     remoteDirectory: /upload/in/statements/
     localDirectory: tmp/
-    host: sftp
+    host: sftp-server
     user: tester
     password: password
     port: 22
@@ -11,7 +11,7 @@ spring:
   kafka:
     producer:
       client-id: ecs-bank-statement-producer
-      bootstrap-servers: broker:9092
+      bootstrap-servers: kafka1:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
       properties:
