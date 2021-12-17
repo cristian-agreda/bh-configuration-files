@@ -27,7 +27,7 @@ s3:
 application:
   config:
     reader:
-      integration-code: ecs-bank
+      client-code: ecs-bank
       process: STATEMENTS
       validation-required: true
       topic: statement.fct.files.0
