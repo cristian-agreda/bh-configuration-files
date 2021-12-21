@@ -28,6 +28,7 @@ application:
   config:
     reader:
       client-code: ecs-bank
+      integration-code: ecs-bank
       process: STATEMENTS
       validation-required: true
       topic: statement.fct.files.0
