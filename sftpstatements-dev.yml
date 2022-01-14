@@ -27,8 +27,8 @@ s3:
 application:
   config:
     reader:
+      file-format: MT940
       client-code: ecs-bank
-      integration-code: ecs-bank
       process: STATEMENTS
       validation-required: true
-      topic: statement.fct.files.0
+      topic: statement.fct.files
