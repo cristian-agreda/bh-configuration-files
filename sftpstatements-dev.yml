@@ -31,4 +31,4 @@ application:
       client-code: ecs-bank
       process: STATEMENTS
       validation-required: true
-      topic: statement.fct.files
+      topic: statement.fct.ecs.files
