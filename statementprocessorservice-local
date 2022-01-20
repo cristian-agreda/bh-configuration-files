@@ -21,9 +21,9 @@ spring:
       kafka:
         streams:
           binder:
-            brokers: ${KAFKA_SERVER}
+            brokers: http://kafka1:9092
             configuration:
-              schema.registry.url: ${SCHEMA-REGISTRY}
+              schema.registry.url: http://kafka-schema-registry:8081
               commit.interval.ms: 80000
             functions:
               streamStatementFileProcessor:
@@ -52,7 +52,7 @@ spring:
 #AWS S3 configuration settings
 s3:
   config:
-    url: ${AWS-S3}
+    url: http://aws-localstack:4566
     region: south-east-1
     access-key-id: test
     secret-key-id: test
