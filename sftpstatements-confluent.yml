@@ -1,0 +1,45 @@
+sftp:
+  config:
+    remoteDirectory: /upload/in/statements/
+    localDirectory: tmp/
+    host: sftp-server
+    user: tester
+    password: password
+    port: 22
+      
+spring:
+  kafka:
+  properties:
+    ssl: PLAIN
+    bootstrap.servers: pkc-ymrq7.us-east-2.aws.confluent.cloud:9092
+    sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule   required username='5L2G7LP5EL7AWM3I'   password='NDKyV2UTTl/7evqpaUjp9lVTShu58z6AvEOrFwNxHxgvFj9NZBGvVq23xUGQPoEz';
+    security: SASL_SSL
+    session:
+      timeout.ms: 45000
+    basic:
+      auth:
+        credentials.source: USER_INFO
+        user.info: 3NCS5NVOVD3BEEXY:BwP9PGkBDl+FdzOiD0ZwnFQ2fZjdbcXZUCZyRL+B9gPoL7hSLXyH64SMn+QaG7AN
+    schema.registry.url: https://psrc-gk071.us-east-2.aws.confluent.cloud
+    
+    
+    producer:
+      client-id: ecs-bank-statement-producer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+
+s3:
+  config:
+    url: http://aws-localstack:4566
+    region: south-east-1
+    access-key-id: test
+    secret-key-id: test
+
+application:
+  config:
+    reader:
+      file-format: MT940
+      client-code: ecs-bank
+      process: STATEMENTS
+      validation-required: true
+      topic: statement.fct.ecs.files
