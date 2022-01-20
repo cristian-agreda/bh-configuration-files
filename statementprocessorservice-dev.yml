@@ -21,7 +21,7 @@ spring:
       kafka:
         streams:
           binder:
-            brokers: http://kafka1:9092
+            brokers: http://kafka1:19092
             configuration:
               schema.registry.url: http://kafka-schema-registry:8081
               commit.interval.ms: 80000
