@@ -1,0 +1,60 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: statement-file-processor
+  kafka:
+    streams:
+      application-id: statement-stream-processor
+      replication-factor: 1
+  cloud:
+    stream:
+      function:
+        definition: streamStatementFileProcessor;statementAuditViewMaterialized
+      bindings:
+        streamStatementFileProcessor-in-0:
+          destination: statement.fct.ecs.files
+        streamStatementFileProcessor-out-0:
+          destination: statement.fct.ecs.files
+        statementAuditViewMaterialized-in-0:
+            destination: statement.fct.ecs.files
+        statementAuditViewMaterialized-out-0:
+            destination: statement.view.ecs.files
+      kafka:
+        streams:
+          binder:
+            brokers: ${KAFKA_SERVER}
+            configuration:
+              schema.registry.url: ${SCHEMA-REGISTRY}
+              commit.interval.ms: 80000
+            functions:
+              streamStatementFileProcessor:
+                applicationId: streamStatementFileProcessor
+              statementAuditViewMaterialized:
+                applicationId: statementAuditViewMaterialized
+          bindings:
+            streamStatementFileProcessor-in-0:
+              consumer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+                dlqName: statement.fct.ecs.files.dlq
+            streamStatementFileProcessor-out-0:
+              producer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+            statementAuditViewMaterialized-in-0:
+              consumer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+            statementAuditViewMaterialized-out-0:
+              producer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+
+#AWS S3 configuration settings
+s3:
+  config:
+    url: ${AWS-S3}
+    region: south-east-1
+    access-key-id: test
+    secret-key-id: test
