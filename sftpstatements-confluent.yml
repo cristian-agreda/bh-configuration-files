@@ -2,7 +2,7 @@ sftp:
   config:
     remoteDirectory: /upload/in/statements/
     localDirectory: tmp/
-    host: sftp-server
+    host: localhost
     user: tester
     password: password
     port: 22
@@ -30,7 +30,7 @@ spring:
 
 s3:
   config:
-    url: http://aws-localstack:4566
+    url: http://localhost:4566
     region: south-east-1
     access-key-id: test
     secret-key-id: test
