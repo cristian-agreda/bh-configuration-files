@@ -8,11 +8,15 @@ sftp:
     port: 22
 spring:
   kafka:
+    producer:
+      client-id: ecs-bank-statement-producer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
     properties:
-      ssl: PLAIN
       bootstrap:
          servers: pkc-ymrq7.us-east-2.aws.confluent.cloud:9092
       sasl:
+        mechanism: PLAIN
         jaas:
           config: org.apache.kafka.common.security.plain.PlainLoginModule   required username='5L2G7LP5EL7AWM3I'   password='NDKyV2UTTl/7evqpaUjp9lVTShu58z6AvEOrFwNxHxgvFj9NZBGvVq23xUGQPoEz';
       security:
@@ -22,17 +26,13 @@ spring:
           ms: 45000
       basic:
         auth:
-        credentials:
-          source: USER_INFO
-        user:
-          info: 3NCS5NVOVD3BEEXY:BwP9PGkBDl+FdzOiD0ZwnFQ2fZjdbcXZUCZyRL+B9gPoL7hSLXyH64SMn+QaG7AN
+          credentials:
+            source: USER_INFO
+          user:
+            info: 3NCS5NVOVD3BEEXY:BwP9PGkBDl+FdzOiD0ZwnFQ2fZjdbcXZUCZyRL+B9gPoL7hSLXyH64SMn+QaG7AN
       schema:
         registry:
           url: https://psrc-gk071.us-east-2.aws.confluent.cloud
-    producer:
-      client-id: ecs-bank-statement-producer
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
 s3:
   config:
     url: http://localhost:4566
