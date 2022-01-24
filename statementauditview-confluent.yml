@@ -1,1 +1,54 @@
-
+server:
+  port: 9090
+spring:
+  kafka:
+    streams:
+      application-id: statement-audit-view
+      replication-factor: 1
+    properties:
+      bootstrap:
+         servers: pkc-ymrq7.us-east-2.aws.confluent.cloud:9092
+      sasl:
+        mechanism: PLAIN
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule   required username='5L2G7LP5EL7AWM3I'   password='NDKyV2UTTl/7evqpaUjp9lVTShu58z6AvEOrFwNxHxgvFj9NZBGvVq23xUGQPoEz';
+      security:
+        protocol: SASL_SSL
+      session:
+        timeout:
+          ms: 45000
+      basic:
+        auth:
+          credentials:
+            source: USER_INFO
+          user:
+            info: 3NCS5NVOVD3BEEXY:BwP9PGkBDl+FdzOiD0ZwnFQ2fZjdbcXZUCZyRL+B9gPoL7hSLXyH64SMn+QaG7AN
+      schema:
+        registry:
+          url: https://psrc-gk071.us-east-2.aws.confluent.cloud
+  cloud:
+    stream:
+      function:
+        definition: statementAuditViewMaterialized
+      bindings:
+        statementAuditViewMaterialized-in-0:
+            destination: statement.fct.ecs.files
+        statementAuditViewMaterialized-out-0:
+            destination: statement.view.ecs.files
+      kafka:
+        streams:
+          binder:
+            configuration:
+              commit.interval.ms: 80000
+            functions:
+              statementAuditViewMaterialized:
+                applicationId: statementAuditViewMaterialized
+          bindings:        
+            statementAuditViewMaterialized-in-0:
+              consumer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+            statementAuditViewMaterialized-out-0:
+              producer:
+                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
