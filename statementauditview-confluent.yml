@@ -40,15 +40,13 @@ spring:
           binder:
             configuration:
               commit.interval.ms: 80000
+              default:
+                key:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value:
+                  serde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
             functions:
               statementAuditViewMaterialized:
                 applicationId: statementAuditViewMaterialized
-          bindings:        
-            statementAuditViewMaterialized-in-0:
-              consumer:
-                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
-                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
-            statementAuditViewMaterialized-out-0:
-              producer:
-                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
-                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+          
+
