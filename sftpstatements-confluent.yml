@@ -12,6 +12,8 @@ spring:
       client-id: ecs-bank-statement-producer
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: https://psrc-gk071.us-east-2.aws.confluent.cloud     
     properties:
       bootstrap:
          servers: pkc-ymrq7.us-east-2.aws.confluent.cloud:9092
