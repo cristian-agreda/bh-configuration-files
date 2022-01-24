@@ -2,7 +2,7 @@ sftp:
   config:
     remoteDirectory: /upload/in/statements/
     localDirectory: tmp/
-    host: localhost
+    host: sftp-server
     user: tester
     password: password
     port: 22
@@ -35,7 +35,7 @@ spring:
           url: https://psrc-gk071.us-east-2.aws.confluent.cloud
 s3:
   config:
-    url: http://localhost:4566
+    url: http://aws-localstack:4566
     region: south-east-1
     access-key-id: test
     secret-key-id: test
