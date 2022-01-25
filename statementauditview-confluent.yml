@@ -38,8 +38,10 @@ spring:
       kafka:
         streams:
           binder:
+            brokers: pkc-ymrq7.us-east-2.aws.confluent.cloud:9092
             deserializationExceptionHandler: sendToDlq
             configuration:
+              schema.registry.url: https://psrc-gk071.us-east-2.aws.confluent.cloud
               commit.interval.ms: 80000
               default:
                 key:
