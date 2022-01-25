@@ -25,7 +25,7 @@ spring:
           url: https://psrc-gk071.us-east-2.aws.confluent.cloud
     streams:
       application-id: statement-stream-processor
-      replication-factor: 1
+      replication-factor: 3
   cloud:
     stream:
       function:
