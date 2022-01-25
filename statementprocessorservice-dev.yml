@@ -24,8 +24,6 @@ spring:
             functions:
               streamStatementFileProcessor:
                 applicationId: streamStatementFileProcessor
-              statementAuditViewMaterialized:
-                applicationId: statementAuditViewMaterialized
           bindings:
             streamStatementFileProcessor-in-0:
               consumer:
