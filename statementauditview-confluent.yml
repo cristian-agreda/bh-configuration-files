@@ -38,6 +38,7 @@ spring:
       kafka:
         streams:
           binder:
+            deserializationExceptionHandler: sendToDlq
             configuration:
               commit.interval.ms: 80000
               default:
@@ -45,6 +46,10 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 value:
                   serde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+          bingings:
+            statementAuditViewMaterialized-in-0:
+              consumer:
+                dlqName: statement.view.ecs.files.dlq
             functions:
               statementAuditViewMaterialized:
                 applicationId: statementAuditViewMaterialized
