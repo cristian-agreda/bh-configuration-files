@@ -5,6 +5,16 @@ spring:
     streams:
       application-id: statement-audit-view
       replication-factor: 1
+    properties:
+      basic:
+        auth:
+          credentials:
+            source:
+          user:
+            info:
+      schema:
+        registry:
+          url: http://kafka-schema-registry:8081
   cloud:
     stream:
       function:
