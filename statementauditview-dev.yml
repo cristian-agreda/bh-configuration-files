@@ -1,0 +1,38 @@
+server:
+  port: 9090
+spring:
+  kafka:
+    streams:
+      application-id: statement-audit-view
+      replication-factor: 1
+  cloud:
+    stream:
+      function:
+        definition: statementAuditViewMaterialized
+      bindings:
+        statementAuditViewMaterialized-in-0:
+            destination: statement.fct.ecs.files
+        statementAuditViewMaterialized-out-0:
+            destination: statement.view.ecs.files
+      kafka:
+        streams:
+          binder:
+            brokers: http://kafka1:19092
+            deserializationExceptionHandler: sendToDlq
+            configuration:
+              schema.registry.url: http://kafka-schema-registry:8081
+              commit.interval.ms: 80000
+              default:
+                key:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value:
+                  serde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+          bingings:
+            statementAuditViewMaterialized-in-0:
+              consumer:
+                dlqName: statement.view.ecs.files.dlq
+            functions:
+              statementAuditViewMaterialized:
+                applicationId: statementAuditViewMaterialized
+          
+

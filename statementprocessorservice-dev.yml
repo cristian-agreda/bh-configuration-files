@@ -8,16 +8,12 @@ spring:
   cloud:
     stream:
       function:
-        definition: streamStatementFileProcessor;statementAuditViewMaterialized
+        definition: streamStatementFileProcessor
       bindings:
         streamStatementFileProcessor-in-0:
           destination: statement.fct.ecs.files
         streamStatementFileProcessor-out-0:
           destination: statement.fct.ecs.files
-        statementAuditViewMaterialized-in-0:
-            destination: statement.fct.ecs.files
-        statementAuditViewMaterialized-out-0:
-            destination: statement.view.ecs.files
       kafka:
         streams:
           binder:
@@ -40,19 +36,3 @@ spring:
               producer:
                 keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
-            statementAuditViewMaterialized-in-0:
-              consumer:
-                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
-                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
-            statementAuditViewMaterialized-out-0:
-              producer:
-                keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
-                valueSerde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
-
-#AWS S3 configuration settings
-s3:
-  config:
-    url: http://aws-localstack:4566
-    region: south-east-1
-    access-key-id: test
-    secret-key-id: test
