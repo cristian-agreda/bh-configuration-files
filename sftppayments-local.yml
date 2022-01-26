@@ -1,1 +1,39 @@
 
+sftp:
+  config:
+    remoteDirectory: /upload/in/payments/
+    localDirectory: tmp/
+    host: localhost
+    user: tester
+    password: password
+    port: 22
+
+spring:
+  kafka:
+    producer:
+      client-id: ecs-bank-statement-producer
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: http://localhost:8081
+
+s3:
+  config:
+    url: http://localhost:4566
+    region: south-east-1
+    access-key-id: test
+    secret-key-id: test
+
+application:
+  config:
+    reader:
+      file-format: MT940
+      client-code: ecs-bank
+      process: PAYMENTS
+      validation-required: true
+      topic: payment.fct.ecs.files
+    security:
+      decryption-required: true
+      private-key-name: FE7F2339F04337943E60A11BB884FBB10856F56E.asc
+      password: ecs_developer
