@@ -18,7 +18,7 @@ spring:
   cloud:
     stream:
       function:
-        definition: statementAuditViewMaterialized;statementHistoryAuditViewMaterialized
+        definition: statementAuditViewMaterialized; statementHistoryAuditViewMaterialized
       bindings:
         statementAuditViewMaterialized-in-0:
             destination: statement.fct.ecs.files
