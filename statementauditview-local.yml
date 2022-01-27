@@ -39,14 +39,14 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 value:
                   serde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+            functions:
+              streamStatementFileProcessor:
+                applicationId: streamStatementFileProcessor
+              statementAuditViewMaterialized:
+                applicationId: statementAuditViewMaterialized
           bingings:
             statementAuditViewMaterialized-in-0:
               consumer:
                 dlqName: statement.view.ecs.files.dlq
-            functions:
-              statementAuditViewMaterialized:
-                applicationId: statementAuditViewMaterialized
-              statementHistoryAuditViewMaterialized:
-                applicationId: statementHistoryAuditViewMaterialized
           
 
