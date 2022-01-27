@@ -2,7 +2,6 @@
 sftp:
   config:
     remoteDirectory: /upload/in/payments/
-    localDirectory: tmp/
     host: localhost
     user: tester
     password: password
@@ -28,12 +27,12 @@ s3:
 application:
   config:
     reader:
-      file-format: MT940
       client-code: ecs-bank
-      process: PAYMENTS
-      validation-required: true
+      file-format: MT940      
       topic: payment.fct.ecs.files
+      process: PAYMENTS
       file-extension: txt
+      validation-required: true
     security:
       decryption-required: true
       private-key-name: FE7F2339F04337943E60A11BB884FBB10856F56E.asc
