@@ -34,6 +34,6 @@ application:
       file-extension: txt
       validation-required: true
     security:
-      decryption-required: false
+      decryption-required: true
       private-key-name: FE7F2339F04337943E60A11BB884FBB10856F56E.asc
       password: ecs_developer
