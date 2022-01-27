@@ -33,6 +33,7 @@ application:
       process: PAYMENTS
       validation-required: true
       topic: payment.fct.ecs.files
+      file-extension: txt
     security:
       decryption-required: true
       private-key-name: FE7F2339F04337943E60A11BB884FBB10856F56E.asc
