@@ -18,12 +18,14 @@ spring:
   cloud:
     stream:
       function:
-        definition: statementAuditViewMaterialized
+        definition: statementAuditViewMaterialized;statementHistoryAuditViewMaterialized
       bindings:
         statementAuditViewMaterialized-in-0:
             destination: statement.fct.ecs.files
         statementAuditViewMaterialized-out-0:
             destination: statement.view.ecs.files
+        statementHistoryAuditViewMaterialized-in-0:
+            destination: statement.fct.ecs.files
       kafka:
         streams:
           binder:
@@ -44,5 +46,7 @@ spring:
             functions:
               statementAuditViewMaterialized:
                 applicationId: statementAuditViewMaterialized
+              statementHistoryAuditViewMaterialized:
+                applicationId: statementHistoryAuditViewMaterialized
           
 
