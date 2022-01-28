@@ -29,12 +29,14 @@ spring:
   cloud:
     stream:
       function:
-        definition: statementAuditViewMaterialized
+        definition: statementAuditViewMaterialized;statementHistoryAuditViewMaterialized
       bindings:
         statementAuditViewMaterialized-in-0:
             destination: statement.fct.ecs.files
         statementAuditViewMaterialized-out-0:
             destination: statement.view.ecs.files
+        statementHistoryAuditViewMaterialized-in-0:
+            destination: statement.fct.ecs.files
       kafka:
         streams:
           binder:
@@ -48,12 +50,13 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
                 value:
                   serde: io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde
+            functions:
+              statementAuditViewMaterialized:
+                applicationId: statementAuditViewMaterialized
+              statementHistoryAuditViewMaterialized:
+                applicationId: statementHistoryAuditViewMaterialized
           bingings:
             statementAuditViewMaterialized-in-0:
               consumer:
                 dlqName: statement.view.ecs.files.dlq
-            functions:
-              statementAuditViewMaterialized:
-                applicationId: statementAuditViewMaterialized
-          
 
