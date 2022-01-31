@@ -31,7 +31,8 @@ application:
       file-format: MT940      
       topic: payment.fct.ecs.files
       process: PAYMENTS
-      file-extension: txt
+      file-extension-out: txt
+      file-extension-in: pgp
       validation-required: true
     security:
       decryption-required: true
