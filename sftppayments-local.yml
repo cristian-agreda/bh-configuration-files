@@ -28,7 +28,7 @@ application:
   config:
     reader:
       client-code: ecs-bank
-      file-format: MT940      
+      file-format: MT101     
       topic: payment.fct.ecs.files
       process: PAYMENTS
       file-extension-out: txt
