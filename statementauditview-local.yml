@@ -22,10 +22,10 @@ spring:
       bindings:
         statementAuditViewMaterialized-in-0:
             destination: statement.fct.ecs.files
-        statementAuditViewMaterialized-out-0:
-            destination: statement.view.ecs.files
         statementHistoryAuditViewMaterialized-in-0:
             destination: statement.fct.ecs.files
+        statementHistoryAuditViewMaterialized-in-1:
+          destination: statement.fct.ecs.files.activity
       kafka:
         streams:
           binder:
@@ -44,10 +44,6 @@ spring:
                 applicationId: statementAuditViewMaterialized
               statementHistoryAuditViewMaterialized:
                 applicationId: statementHistoryAuditViewMaterialized
-          bingings:
-            statementAuditViewMaterialized-in-0:
-              consumer:
-                dlqName: statement.view.ecs.files.dlq
 
           
 

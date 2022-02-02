@@ -13,7 +13,7 @@ spring:
         streamStatementFileProcessor-in-0:
           destination: statement.fct.ecs.files
         streamStatementFileProcessor-out-0:
-          destination: statement.fct.ecs.files
+          destination: statement.fct.ecs.files.activity
       kafka:
         streams:
           binder:
